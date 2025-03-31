@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: test-nginx-gateway
+  namespace: test-gateway
+spec:
+  gatewayClassName: nginx  # Matches the GatewayClass
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: Same  # Allows routes from the same namespace
